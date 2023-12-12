@@ -38,11 +38,13 @@ Route::prefix('catalog')->group(function () {
 
     Route::get('/show/{id}', [CatalogController::class, 'getShow'])->where('id', '[0-9]+');
 
-    Route::get('/create', [CatalogController::class, 'getCreate']);
+    Route::group(['middleware' => 'auth'], function() {
+        Route::get('/create', [CatalogController::class, 'getCreate']);
 
-    Route::get('/edit/{id}', [CatalogController::class, 'getEdit'])->where('id', '[0-9]+');
+        Route::get('/edit/{id}', [CatalogController::class, 'getEdit'])->where('id', '[0-9]+');
 
-    Route::put('/edit/{id}', [CatalogController::class, 'putEdit'])->where('id', '[0-9]+');
+        Route::put('/edit/{id}', [CatalogController::class, 'putEdit'])->where('id', '[0-9]+');
+    });
 });
 
 Route::prefix('reconocimientos')->group(function () {
