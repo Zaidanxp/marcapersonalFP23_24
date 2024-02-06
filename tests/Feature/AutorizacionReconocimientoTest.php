@@ -142,7 +142,7 @@ class AutorizacionReconocimientoTest extends TestCase
         $response->assertForbidden();
 
         $response = $this->reconocimientoValidar();
-        $response->assertForbidden();
+        $response->assertSuccessful();
     }
 
 
